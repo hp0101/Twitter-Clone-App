@@ -27,6 +27,8 @@ class LoginViewController: UIViewController {
         UserDefaults.standard.set(true, forKey: "userLoggedIn")
         let myUrl = "https://api.twitter.com/oauth/request_token"
         TwitterAPICaller.client?.login(url: myUrl, success: {
+            // do not set the segue from button to the next View Controller - the code below will not be executed
+            // MUST set the segue from View Controller to the next View Controller
             self.performSegue(withIdentifier: "loginToHome", sender: self)
         }, failure: { (Error) in
             print("Could not log in!")
