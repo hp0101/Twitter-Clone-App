@@ -25,3 +25,8 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+## Notes
+
+- Disable Avast Antivirus. It blocks requests from the simulator to Twitter server
+- Don't connect segue from the button to the next View Controller. Instead, connect the segue from one View Controller to the next View Controller
+
