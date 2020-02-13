@@ -62,6 +62,8 @@ class HomeTableViewController: UITableViewController {
             loadMoreTweets()
         }
     }
+    
+    // only get called once
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,12 +72,19 @@ class HomeTableViewController: UITableViewController {
         myRefreshControl.addTarget(self, action: #selector(loadTweetsTable), for: .valueChanged)
         
         tableView.refreshControl = myRefreshControl
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    // can get called multiple times
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadTweetsTable()
     }
 
     // MARK: - Table view data source
@@ -100,6 +109,10 @@ class HomeTableViewController: UITableViewController {
         if let imageData = data {
             cell.profileImageView.image = UIImage(data: imageData)
         }
+        
+        cell.setFavorite(tweetArray[indexPath.row]["favorited"] as! Bool)
+        cell.tweetId = tweetArray[indexPath.row]["id"] as! Int
+        cell.setRetweeted(tweetArray[indexPath.row]["retweeted"] as! Bool)
         
         
         return cell;
